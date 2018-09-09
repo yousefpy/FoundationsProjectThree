@@ -35,9 +35,9 @@ people = [
 	marcus_aurelius
 ]
 
-population = Population()
+population = []
 for person in people:
-	population.add_person(person)
+	population.append(person)
 
 book = Club("Book Club", "A book club")
 book.recruit_member(steve)
