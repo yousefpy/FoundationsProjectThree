@@ -1,6 +1,6 @@
 # CREATION OF DATA
 ######################### DO NOT MODIFY THIS CODE ###########################
-from components import Population, Person, Club
+from components import Person, Club
 steve = Person("Steve", "average joe", 27)
 michelle = Person("Michelle", "average jane", 12)
 john = Person("John", "a blond guy", 32)
