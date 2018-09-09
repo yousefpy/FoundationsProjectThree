@@ -1,6 +1,6 @@
 # CREATION OF DATA
 ######################### DO NOT MODIFY THIS CODE ###########################
-from components import Population, Person, Club
+from components import Person, Club
 steve = Person("Steve", "average joe", 27)
 michelle = Person("Michelle", "average jane", 12)
 john = Person("John", "a blond guy", 32)
@@ -35,9 +35,9 @@ people = [
 	marcus_aurelius
 ]
 
-population = Population()
+population = []
 for person in people:
-	population.add_person(person)
+	population.append(person)
 
 book = Club("Book Club", "A book club")
 book.recruit_member(steve)

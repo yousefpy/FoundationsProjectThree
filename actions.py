@@ -10,6 +10,13 @@ myself = Person(my_name, my_bio, my_age)
 def introduction():
     print("Hello, %s. Welcome to our portal." % my_name)
 
+def print_population():
+        print("-----------------------------------")
+        index = 1
+        for person in population:
+            print("[%s] %s" % (index, person.name))
+            index += 1
+
 def options():
     print("-------------------")
     print("Would you like to:")
@@ -31,12 +38,12 @@ def create_club():
     new_club.recruit_member(myself)
     new_club.assign_president(myself)
     print("Enter the numbers of the people you would like to recruit to your new club (-1 to stop):")
-    population.print_people()
+    print_population()
     num = 0
     while num != "-1":
         num = input("> ")
-        if num.isdigit() and int(num) <= len(population.people):
-            person = population.people[int(num)-1]
+        if num.isdigit() and int(num) <= len(population):
+            person = population[int(num)-1]
             new_club.recruit_member(person)
 
     print("Here's your club:")

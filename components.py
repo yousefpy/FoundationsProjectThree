@@ -6,21 +6,6 @@ class Person():
         self.age = age
 
 
-class Population():
-    def __init__(self):
-        self.people = []
-
-    def add_person(self, person):
-        self.people.append(person)
-
-    def print_people(self):
-        print("-----------------------------------")
-        index = 1
-        for person in self.people:
-            print("[%s] %s" % (index, person.name))
-            index += 1
-
-
 class Club():
     def __init__(self, name, description):
         self.president = None
