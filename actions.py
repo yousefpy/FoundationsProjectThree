@@ -4,12 +4,10 @@ from components import Club, Person
 
 my_name = "Mshary"
 my_age = 23
-myself = Person(my_name, "Me, Myself, and I", my_age)
+my_bio = "Me, Myself, and I"
+myself = Person(my_name, my_bio, my_age)
 
 def introduction():
-    # my_name = input("What is your name, my lord? ")
-    # my_age = input("And how old are you? ")
-    # myself = Person(my_name, my_age)
     print("Hello, %s. Welcome to our portal." % my_name)
 
 def options():
