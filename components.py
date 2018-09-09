@@ -1,58 +1,59 @@
 # CLASSES AND METHODS
-class Store():
-    def __init__(self, name):
+class Person():
+    def __init__(self, name, bio, age):
         self.name = name
-        self.products = []
+        self.bio = bio
+        self.age = age
 
-    def add_product(self, product):
-        self.products.append(product)
 
-    def print_products(self):
+class Population():
+    def __init__(self):
+        self.people = []
+
+    def add_person(self, person):
+        self.people.append(person)
+
+    def print_people(self):
         print("-----------------------------------")
-        print("%s:" % self.name)
-        for product in self.products:
-            print(product)
-            print()
+        index = 1
+        for person in self.people:
+            print("[%s] %s" % (index, person.name))
+            index += 1
 
 
-class Product():
-    def __init__(self, name, description, price):
+class Club():
+    def __init__(self, name, description):
+        self.president = None
+        self.members = []
         self.name = name
         self.description = description
-        self.price = price
 
-    def __str__(self):
-        return "\tProduct Name: %s\n\tDescription: %s\n\tPrice: %s KWD" %(self.name, self.description, self.price)
+    def assign_president(self, person):
+        if person in self.members:
+            self.president = person
+        else:
+            print("%s is not a member of this club. The president must first be a member before being assigned as the president." % person.name)
 
+    def recruit_member(self, person):
+        if person not in self.members:
+            self.members.append(person)
 
-class Cart():
-    def __init__(self):
-        self.products = []
+    def get_average_age(self):
+        total_age = 0
+        number_of_members = len(self.members)
+        for person in self.members:
+            total_age += person.age
 
-    def add_to_cart(self, product):
-        self.products.append(product)
+        average_age = total_age/number_of_members
+        return average_age
 
-    def get_total_price(self):
-        price = 0
-        for product in self.products:
-            price += product.price
-
-        return price
-
-    def print_receipt(self):
-        print("Here's your receipt: ")
-        for product in self.products:
-            print(product)
+    def print_member_list(self):
+        print("Members: ")
+        for person in self.members:
+            if person is self.president:
+                print("- %s (%s years old, President) - %s" % (person.name, person.age, person.bio))
+            else:
+                print("- %s (%s years old) - %s" % (person.name, person.age, person.bio))
             print()
 
-        print("Your total price is: KD%s" % self.get_total_price())
-
-    def checkout(self):
-        print("-----------------------------------")
-        self.print_receipt()
-        confirm = input("Confirm?(yes/no)")
-        if confirm.lower() == "yes":
-            self.products = []
-            print("Your order has been placed.")
-        else:
-            print("Your order has been cancelled.")
+        print("Average age in this club: %syr" % self.get_average_age())

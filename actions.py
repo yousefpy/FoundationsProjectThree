@@ -1,62 +1,84 @@
 # UTILS AND FUNCTIONALITY
-from data import stores
-from components import Cart
+from data import  population, clubs
+from components import Club, Person
 
-site_name = "www.achoo.com"
+my_name = "Mshary"
+my_age = 23
+myself = Person(my_name, "Me, Myself, and I", my_age)
 
-def welcome():
-    print("Welcome to %s\nFeel free to shop throughout the stores we have, and only checkout once!" % site_name)
+def introduction():
+    # my_name = input("What is your name, my lord? ")
+    # my_age = input("And how old are you? ")
+    # myself = Person(my_name, my_age)
+    print("Hello, %s. Welcome to our portal." % my_name)
 
-def print_stores():
-    for store in stores:
-        print("- %s" % store.name)
+def options():
+    print("-------------------")
+    print("Would you like to:")
+    print("1) Create a new club.")
+    print("or:")
+    print("2) Browse and join clubs.")
+    print("or:")
+    print("3) View existing clubs.")
+    print("or:")
+    print("4) Display members of a club.")
+    print("or:")
+    print("-1) Close application.")
+    return input("> ")
 
-def get_store(store_name):
-    for store in stores:
-        if store.name.lower() == store_name.lower():
-            return store
-    return False
+def create_club():
+    name = input("Pick a name for your awesome new club: ")
+    description = input("What is your club about?\n")
+    new_club = Club(name, description)
+    new_club.recruit_member(myself)
+    new_club.assign_president(myself)
+    print("Enter the numbers of the people you would like to recruit to your new club (-1 to stop):")
+    population.print_people()
+    num = 0
+    while num != "-1":
+        num = input("> ")
+        if num.isdigit() and int(num) <= len(population.people):
+            person = population.people[int(num)-1]
+            new_club.recruit_member(person)
 
-def pick_store():
-    store_found = False
-    while not store_found:
-        print_stores()
-        store_name = input("Pick a store by typing its name. Or type \"checkout\" to pay your bills and say your goodbyes.\n")
-        if store_name.lower() == "checkout":
-            return "checkout"
-        picked_store = get_store(store_name)
-        if picked_store:
-            break
+    print("Here's your club:")
+    print(new_club.name)
+    print(new_club.description)
+    new_club.print_member_list()
+    clubs.append(new_club)
 
-        print("No store with that name. Please try again.")
 
-    return picked_store
+def view_clubs():
+    for club in clubs:
+        print("\tNAME: %s\n\tDESCRIPTION: %s\n\tMEMBERS: %s\n" % (club.name, club.description, len(club.members)))
 
-def pick_products(cart, picked_store):
-    print("Pick the items you'd like to add in your cart by typing the product name exactly as it was spelled above.")
-    print("Type \"back\" to go back to the main menu where you can checkout.")
-    user_input = ""
-    while user_input.lower() != "back":
-        for product in picked_store.products:
-            if user_input.lower() == product.name.lower():
-                cart.add_to_cart(product)
-        user_input = input()
+def view_club_members():
+    view_clubs()
+    club_name = input("Enter the name of the club whose members you'd like to see: ")
+    for club in clubs:
+        if club.name == club_name:    
+            club.print_member_list()
 
-    return user_input
+def join_clubs():
+    view_clubs()
+    club_name = input("Enter the name of the club you'd like to join: ")
+    for club in clubs:
+        if club.name == club_name:
+            club.recruit_member(myself)
+            print("%s just joined %s!" % (myself.name, club.name))
 
-def shop():
-    cart = Cart()
-    user_input = ""
-    while user_input.lower() != "checkout":
-        user_input = ""
-        picked_store = pick_store()
-        if picked_store == "checkout":
-            break
 
-        picked_store.print_products()
-        user_input = pick_products(cart, picked_store)
-
-    cart.checkout()
-
-def thank_you():
-    print("Thank you for shopping with us at %s" % site_name)
+def application():
+    introduction()
+    option = ""
+    while option != "-1":
+        option = options()
+        if option.isdigit():
+            if int(option) == 1:
+                create_club()
+            elif int(option) == 2:
+                join_clubs()
+            elif int(option) == 3:
+                view_clubs()
+            elif int(option) == 4:
+                view_club_members()

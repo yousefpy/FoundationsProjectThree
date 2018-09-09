@@ -1,34 +1,77 @@
 # CREATION OF DATA
 ######################### DO NOT MODIFY THIS CODE ###########################
-from components import Store, Product
+from components import Population, Person, Club
+steve = Person("Steve", "average joe", 27)
+michelle = Person("Michelle", "average jane", 12)
+john = Person("John", "a blond guy", 32)
+ron = Person("Ron", "a red guy", 23)
+maha = Person("Maha", "a shy girl", 22)
+fatma = Person("Fatma", "a fruit", 24)
+dude = Person("Dude", "a college 'dude'", 25)
+dudette = Person("Dudette", "a meme", 7)
+forever_alone = Person("Forever Alone", "a more popular meme", 9)
+confession_bear = Person("Confession Bear", "an even more popular meme", 10)
+jack = Person("Jack", "an american", 43)
+audrey = Person("Audrey", "just some woman", 31)
+asis = Person("Asis", "a joke we have at Coded", 1)
+caesar = Person("Julius Caesar", "Google me.", 56)
+marcus_aurelius = Person("Marcus Aurelius", "Roman Emperor, philosopher. 'Nuff said.", 61)
 
-stores = []
-def create_product(store, name, description, price):
-    product = Product(name, description, price)
-    store.add_product(product)
+people = [
+	steve,
+	michelle,
+	john,
+	ron,
+	maha,
+	fatma,
+	dude,
+	dudette,
+	forever_alone,
+	confession_bear,
+	jack,
+	audrey,
+	asis,
+	caesar,
+	marcus_aurelius
+]
 
-zara = Store("Zara")
-nike = Store("Nike")
-apple = Store("Apple")
-stores.append(zara)
-stores.append(nike)
-stores.append(apple)
-create_product(zara, "Nice Yellow Top", "A nice yellow top.", 30)
-create_product(zara, "Pants", "100 percent cotton", 25)
-create_product(nike, "Running Shoes", "Shoes for running.", 15)
-create_product(nike, "Style Shoes", "Stylish shoes.", 20)
-create_product(apple, "iPhone X", "256GB Space Gray", 310)
-create_product(apple, "iPhone 5s", "128GB Silver", 250)
+population = Population()
+for person in people:
+	population.add_person(person)
 
-#############################################################################
-# To create a new store:
-    # Create a new Store() object, and append it to the stores list.
+book = Club("Book Club", "A book club")
+book.recruit_member(steve)
+book.recruit_member(ron)
+book.recruit_member(maha)
+book.recruit_member(confession_bear)
+book.recruit_member(audrey)
+book.assign_president(ron)
 
-# To add a new product to the store:
-    # use the create_product() function
-    # which takes the store you want to add the product to, and the product details
+sports = Club("Sports Club", "A sports club")
+sports.recruit_member(michelle)
+sports.recruit_member(john)
+sports.recruit_member(jack)
+sports.recruit_member(caesar)
+sports.recruit_member(marcus_aurelius)
+sports.assign_president(jack)
 
-pharmacy = Store("Pharmacy")
-stores.append(pharmacy)
-create_product(pharmacy, "Melatonin 5mg", "50 pills", 5)
-create_product(pharmacy, "Melatonin 10mg", "50 pills", 8)
+coding = Club("Coding Club", "A coding club")
+coding.recruit_member(dude)
+coding.recruit_member(dudette)
+coding.recruit_member(forever_alone)
+coding.recruit_member(confession_bear)
+coding.recruit_member(asis)
+coding.assign_president(dudette)
+
+glub = Club("Glub Club", "A glubbing club")
+glub.recruit_member(steve)
+glub.recruit_member(john)
+glub.recruit_member(maha)
+glub.recruit_member(fatma)
+glub.recruit_member(caesar)
+glub.assign_president(fatma)
+
+
+clubs = [book, sports, coding, glub]
+
+

@@ -1,6 +1,4 @@
 # TRIGGERING USER INTERFACE FUNCTIONALITY
-from actions import welcome, shop, thank_you
+from actions import application
 
-welcome()
-shop()
-thank_you()
+application()
