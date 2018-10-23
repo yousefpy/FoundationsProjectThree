@@ -17,7 +17,7 @@ asis = Person("Asis", "a joke we have at Coded", 1)
 caesar = Person("Julius Caesar", "Google me.", 56)
 marcus_aurelius = Person("Marcus Aurelius", "Roman Emperor, philosopher. 'Nuff said.", 61)
 
-people = [
+population = [
 	steve,
 	michelle,
 	john,
@@ -34,10 +34,6 @@ people = [
 	caesar,
 	marcus_aurelius
 ]
-
-population = []
-for person in people:
-	population.append(person)
 
 book = Club("Book Club", "A book club")
 book.recruit_member(steve)
@@ -73,5 +69,3 @@ glub.assign_president(fatma)
 
 
 clubs = [book, sports, coding, glub]
-
-
